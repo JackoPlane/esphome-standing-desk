@@ -53,7 +53,7 @@ float UpliftDecoder::decode() {
 
   ESP_LOGD(TAG, "Uplift Decoder - Current Method: %f, Jarvis Method: %d, Jarvis MM: %d", currentMethod, jarvisMethod, jarvisMM);
 
-  return currentMethod;
+  return jarvisMM;
 }
 
 }
