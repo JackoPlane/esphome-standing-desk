@@ -51,9 +51,9 @@ float UpliftDecoder::decode() {
   // const unsigned int jarvisMethod = (static_cast<unsigned>(buf_[0]) << 8) + buf_[1];
   const unsigned int jarvisMM = Util::to_mm(jarvisMethod);
 
-  ESP_LOGI(TAG, "Uplift Decoder - Current Method: %f, Jarvis Method: %d, Jarvis MM: %d", currentMethod, jarvisMethod, jarvisMM);
+  ESP_LOGD(TAG, "Uplift Decoder - Current Method: %f, Jarvis Method: %d, Jarvis MM: %d", currentMethod, jarvisMethod, jarvisMM);
 
-  return ((buf_[0] << 8) | (buf_[1] & 0xFF)) / 10.0;
+  return currentMethod;
 }
 
 }

@@ -81,7 +81,7 @@ void StandingDeskHeightSensor::loop() {
 
     if (this->decoder != nullptr && this->decoder->put(byte)) {
       float height = this->decoder->decode();
-      ESP_LOGVV(TAG, "Got desk height: %f", height);
+      ESP_LOGD(TAG, "Got desk height: %f", height);
       this->last_read = height;
     }
   }
