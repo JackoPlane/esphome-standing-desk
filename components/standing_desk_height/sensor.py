@@ -26,10 +26,10 @@ async def detect_decoder_to_code(config, action_id, template_arg, args):
 DecoderVariants = standing_desk_height_ns.enum("DecoderVariants")
 DECODER_VARIANTS = {
     "auto": DecoderVariants.DECODER_VARIANT_UNKNOWN,
+    "uplift_v2": DecoderVariants.DECODER_VARIANT_UPLIFT_V2,
     "uplift": DecoderVariants.DECODER_VARIANT_UPLIFT,
     "jarvis": DecoderVariants.DECODER_VARIANT_JARVIS,
     "omnidesk": DecoderVariants.DECODER_VARIANT_OMNIDESK,
-    "uplift_v2": DecoderVariants.DECODER_VARIANT_UPLIFT_V2,
 }
 
 CONFIG_SCHEMA = (
