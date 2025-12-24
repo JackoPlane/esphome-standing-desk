@@ -5,6 +5,7 @@ namespace standing_desk_height {
 
 static const char *const TAG = "uplift_v2_decoder";
 
+#define CONTROLLER 0x01
 const uint8_t JARVIS_ADDR = 0x01; // 0xF2;
 
 // Implementation based off of: https://github.com/phord/Jarvis
@@ -35,21 +36,23 @@ void UpliftV2Decoder::reset(uint8_t ch) {
 // SYNC to begin waiting for a new packet.  But if the error byte itself was a
 // sync byte (matches our address), then we should already advance to SYNC2.
 // returns "false" to simplify returning from "put"
-bool UpliftV2Decoder::error(unsigned char ch) {
+bool UpliftV2Decoder::error(uint8_t ch) {
   reset(ch);
   return false;
 }
 
 // Implementation based off of: https://github.com/rmcgibbo/Jarvis
 // Which, despite the name, works for Uplift desks too
-bool UpliftV2Decoder::put(uint8_t b) {
+bool UpliftV2Decoder::put(uint8_t ch) {
   bool complete = false;
 
   switch (state) {
     case SYNC:
-      if (b != JARVIS_ADDR) {
-        ESP_LOGD(TAG, "Bad Sync: %u", b);
-        return error(b);
+    // case SYNC2:
+      if (ch != JARVIS_ADDR) {
+        ESP_LOGD(TAG, "Bad Sync: %u", ch);
+        reset(ch);
+        return false;
       }
       break;
 
