@@ -21,7 +21,7 @@ sensor:
     variant: ${standing_desk_variant}
     device_class: distance
     on_value:
-      component.update: 'target_height'
+      component.update: 'target_desk_height'
 
 output:
   - platform: gpio
