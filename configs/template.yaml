@@ -19,6 +19,8 @@ sensor:
     name: ${desk_height_name}
     unit_of_measurement: ${standing_desk_height_units}
     variant: ${standing_desk_variant}
+    on_value:
+      component.update: 'target_desk_height'
 
 output:
   - platform: gpio
@@ -40,11 +42,14 @@ number:
     id: target_desk_height
     name: ${target_desk_height_name}
     unit_of_measurement: ${standing_desk_height_units}
-    restore_value: true
-    optimistic: true
+    # restore_value: true
+    # optimistic: true
     min_value: ${standing_desk_min_height}
     max_value: ${standing_desk_max_height}
     step: 0.1
+    device_class: distance
+    lambda: !lambda |-
+      return id(desk_height)->get_last_read();
     set_action:
       then:
         - if:
