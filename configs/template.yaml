@@ -50,6 +50,7 @@ number:
     device_class: distance
     lambda: !lambda |-
       return id(desk_height)->get_last_read();
+    update_interval: 'never'
     set_action:
       then:
         - if:
