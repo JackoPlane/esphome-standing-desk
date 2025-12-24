@@ -1,4 +1,5 @@
 #include "standing_desk_height.h"
+#include "decoder_variant.h"
 
 namespace esphome {
 namespace standing_desk_height {
@@ -21,6 +22,9 @@ void StandingDeskHeightSensor::set_decoder_variant(DecoderVariant decoder_varian
       break;
     case DECODER_VARIANT_OMNIDESK:
       this->decoder = new OmnideskDecoder();
+      break;
+    case DECODER_VARIANT_UPLIFT_V2:
+      this->decoder = new UpliftV2Decoder();
       break;
     case DECODER_VARIANT_UNKNOWN:
       this->decoder = nullptr;
